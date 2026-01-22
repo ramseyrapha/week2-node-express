@@ -8,7 +8,7 @@ const PORT = process.env.PORT
 app.use(express.json());
 
 app.use((req, res, next) => {
-    console.log('[${new Date().toISOString()}] ${req.method} ${req.url}');
+    console.log(`${new Date()} ${req.method} ${req.url}`);
     next();
 });
 
@@ -19,12 +19,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/user', (req, res) => {
-    const {name, email} = req.body;
+    const { name, email } = req.body;
     
     if (!name || !email) {
         return res.status(400).send('Error: Missing details in request body.');
     }
-
+   
     res.send('Hello, ${name}!');
 });
 
